@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- form tag is semantic tag -->
+    <!-- 
+        action : specifies where you want to redirect or send the details of the form 
+        method: specifies how you want to send the details "get and post"
+    -->
+    <form action="" method="">
+
+        <label for="name">Enter Name:</label>
+        <input type="text" name="" id="name" placeholder = "text" required>
+
+        <br>
+        <br>
+        <label for="dob">Enter DOB:</label>
+        <input type="date" name="" id="dob" placeholder="date">
+
+        <br>
+        <br>
+        <label for="number">Enter Mobile No:</label>
+        <input type="number" name="" id="number" placeholder = "no">
+
+        <br>
+        <br>
+        <label for="mail">Enter Mail:</label>
+        <input type="email" name="" id="mail" placeholder = "mail">
+
+        <br>
+        <br>
+        <label for="pass">Enter Password:</label>
+        <input type="password" name="" id="pass" placeholder = "pass">
+
+        <br>
+        <br>
+        <input type="color" name="color" id="color" placeholder="color">
+        
+
+
+
+
+        <!-- CheckBox -->
+        <br>
+        <br>
+        <label>
+            <input type="checkbox" value="JS" name="skills">
+            JS
+        </label>
+        
+        <br>
+        <label>
+            <input type="checkbox" value="JS" name="skills">
+            HTML
+        </label>
+
+        <br>
+        <label>
+            <input type="checkbox" value="JS" name="skills">
+            CSS
+        </label>
+
+
+
+        <!-- Radio Button -->
+        <br>
+        <p>Select Batch</p>
+
+        <label>
+            <input type="radio" name="batch" value="morning">
+            Morning
+        </label>
+
+        <br>
+        <label>
+            <input type="radio" name="batch" value="afternoon">
+            afternoon
+        </label>
+
+        <br>
+        <label>
+            <input type="radio" name="batch" value="night">
+            night
+        </label>
+
+
+
+        <br>
+        <br>
+        <!-- Drop Down List -->
+        <select name="city" title="city">
+            <option value="" hidden>Select Your City</option>
+            <option value="">Pune</option>
+            <option value="">Mumbai</option>
+            <option value="">Nagpur</option>
+        </select>
+
+
+        <br>
+        <br>
+        <textarea name="" id="" rows="4" cols="50"></textarea>
+
+
+        <br>
+        <br>
+        <input type="file" placeholder="File Input" name="" id="">
+
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+
+
+        <br>
+        <br>
+        <!-- Italic Bold -->
+        <p>Hello <i>I am</i> <b>Ghost</b></p>
+
+
+        <!-- Non Semantic Tag Side By Side -->
+        <span>ABC</span>
+        <span>XYZ</span>
+
+
+    </form>
+</body>
+</html>
