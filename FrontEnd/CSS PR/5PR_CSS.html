@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="5PR_styles.css"> -->
+    <style>
+        
+
+    .box{
+        height: 200px;
+        width: 200px;
+        background-color: brown;
+        padding: 20px;
+        border: 10px solid black;
+        /* margin: 30px; */
+
+
+        /* ot just adds the scrollbar if content goes out of box */
+        overflow: scroll;
+        text-align: justify;
+
+        box-sizing: border-box;
+        /* 
+            for all boxes which share same height and width should look same size 
+            we use border-box sizing
+            by default it is content-box
+
+            content-box: final size depends on padding and border(its added outside the box)
+            border-box: final size includes the padding and border
+        */
+        
+    }
+
+    .box2{
+        height: 200px;
+        width: 200px;
+        background-color: burlywood;
+    }
+
+    /*
+        content: things inside box
+        padding: space b/w content and border
+        border: the line surrounding padding and content
+        margin: space outside the border
+    */
+
+
+
+
+    .box3{
+        height: 300px;
+        width: 100px;
+        background-color: aqua;
+        /* display: block;
+        display: inline;
+        display: none; */
+        /* visibility: hidden; */
+        display: inline-block;
+        padding: 50px;
+
+    }
+    /* 
+        display: block;
+        starts on a new line takes full width by default
+        width and height can be set
+
+        display: inline;
+        stays in same line width and height dose not apply
+        used for short pieces of text
+
+        display: none;
+        remove from dom
+
+        display: inline-block;
+        stays in line and you can assign height and width
+
+        visibility: hidden;
+        hides the box but stays on page or in dom
+    */
+
+
+
+
+
+
+    .parent{
+        height: 300px;
+        width: 300px;
+        background-color: violet;
+        position: relative;
+        /* top: 100px; */
+        /* left: 50px; */
+        right: -50px;
+        bottom: -100px;
+        /* top:; */
+        /* bottom:; */
+        /* left:; */
+        /* right:; */
+    }
+    .child{
+        background-color: red;
+        height: 100px;
+        width: 100px;
+        position: relative;
+        left: 10px;
+        top: 100px;
+    }
+    /* 
+        position: static; 
+        default value, element value, element stays in normal position
+        
+        position: relative;
+        element moves relative to its normal position (original position is revserved)
+
+        position: absolute;
+        element moves relative to its nearest parent (original space is removed)
+
+        position: fixed;
+        stays on the same place while scrolling
+
+        position: sticky;
+        scrolls to a fixed position while scrolling
+    */
+
+
+    button{
+        /* height: 200px;
+        width: 200px; */
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 20px;
+
+        /* to make a circle border-redius tag need same height and width */
+        /* border-radius: 50%; */
+        padding: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    :root{
+        --primary-color: #e91d12;
+        --text-color: #333;
+        --card-radius: 12px;
+        --spacing: 16px;
+        
+    }
+
+    button{
+        padding: var(--spacing);
+        background-color: var(--primary-color);
+    }
+    </style>
+</head>
+<body>
+    
+    <!-- <div class="box3">igvdnjs</div>
+    <div class="box3">igvdnjs</div> -->
+
+    <br>
+
+    <!-- <div class="box">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam quam repellendus consequatur alias non sed aliquam ex maiores nisi natus, eius nihil blanditiis illo modi optio qui impedit vero quo provident deserunt ducimus ullam earum harum repudiandae? Veniam, reprehenderit dolor? Voluptas, veniam. Voluptatem accusantium similique optio labore debitis! Ab laboriosam ratione odio at fugiat, tempora praesentium consectetur accusantium quam obcaecati tenetur accusamus aliquam, incidunt, odit veniam labore exercitationem magnam adipisci corporis officia officiis? Molestias optio adipisci unde ab amet aut deleniti provident modi dolorum nulla dolores, sed corrupti sapiente quidem nostrum nam praesentium inventore consequuntur possimus a. Amet, delectus rem?
+    </div>
+
+    <br>
+    <div class="box2">
+    </div>
+    
+    <br>
+    <button>Click Me</button> -->
+    <br>
+
+    
+    <button>Click Me</button>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</body>
+</html>

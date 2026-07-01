@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .help-button{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+
+        h3,h2{
+            color: purple;
+        }
+        .first-p{
+            color: rgb(226, 43, 43,0.232) /* red,green,blue,opacity*/
+        }
+        .second-p{
+            color: rgb(226, 43, 43);
+        }
+        #third-p{
+            color: #07080A90; /* 2D: Red, 2F: Green, 34: Blue, 90: Opacity */
+
+            font-size: 25px;
+            font-family: cursive;
+            font-weight: 100;
+            line-height: 2;
+            text-transform: uppercase;
+            text-align: justify; 
+        }
+
+        *{
+            font-size: 30px;
+        }
+        .parent{
+            height: 500px;
+            width:500px;
+            background-color:pink;
+        }
+        .child{
+            height: 200px;
+            width: 5rem;
+            background-color: red;
+            font-size: 20px;
+        }
+        /*
+            em depends on the fontsize of current element
+            and rem depends on the fontsize of the page
+        */
+
+
+        .box{
+            height: 50vh;
+            width: 50vw;
+            background-color: blueviolet;
+        }
+        /*
+            vh is view height it is relative to view height of the page
+            vw is view width it is relative to the view width of the page
+        */
+        
+    </style>
+
+    <!-- <link rel="stylesheet" href="./4PR_styles.css"> -->
+</head>
+<body>
+
+    <a class="help-button" href="#top">Move to Top</a>
+    <!-- 
+        In css cascading is an algorithm that determines which 
+        style rules apply when multiple rules target same html 
+        element 
+    -->
+    <!-- this is inline css and its not recommended -->
+    <p 
+        id="top"
+        style="
+            color: orange;
+        ">
+        abc
+    </p>
+
+    <h3>Ghost</h3>
+    <h2>Ghost</h2>
+
+    <p class="first-p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, sit.</p>
+    <p class="first-p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, sit.</p>
+    <p class="second-p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, sit.</p>
+    <p id="third-p">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, sit.</p>
+
+
+    <div class="parent">
+        <div class="child">
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+    </div>
+
+    <div class="box"></div>
+</body>
+</html>
