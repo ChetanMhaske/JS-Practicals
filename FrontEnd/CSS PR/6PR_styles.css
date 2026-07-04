@@ -1,0 +1,47 @@
+.playground{
+    border: 2px solid #333;
+    padding: 20px;
+    margin: 40px;
+    height: 200px;
+}
+.box{
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background: lightblue;
+    position: relative;
+}
+.box2{
+    position: absolute;
+    background: red;
+    /* right: 0px; */
+    z-index: 6;
+}
+/* .box3{
+    z-index: 50;
+} */
+
+.help-button{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.section{
+    text-align: justify;
+    border: 2px solid #333;
+}
+
+.page-title{
+    /* these 1st 2 tags are compulsory for nav bar to be sticky */
+    top: 0;
+    position: sticky;
+    background: yellow;
+    padding: 10px;
+}
