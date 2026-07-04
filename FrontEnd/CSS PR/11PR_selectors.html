@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .card p{
+            /* descendent selector */
+            color: #555;
+        }
+
+        /* child selector: changes direct children only */
+        #combinators > p{
+            font-weight: bold;
+        }
+
+        /* adjacent sibling: first p after header h1,2,3,4,5,6 */
+        h3 + p{
+            color: purple;
+        }
+
+        h3~p{
+            border-left: 4px solid lightgray;
+            padding-left: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <section id="combinators"> 
+        <h2>combinators</h2>
+
+        <div class="card">
+            <h3>Card Title</h3>
+            <p>Card description inside</p>
+            <button class="primary-btn">Action</button>
+
+
+            <div>
+                <div>
+                    <div>
+                        <p>Something Something</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+
+
+        <div class="card">
+            <h3>Another Card</h3>
+            <p>More Content</p>
+            <button class="primary-btn">Secondary Action</button>
+        </div>
+
+        <p>Para outside card</p>
+
+        <h3>Heading 3 tags</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cupiditate delectus adipisci consequuntur assumenda itaque aspernatur odit ratione, quasi officia minus ipsa, repudiandae esse inventore eius, maxime deserunt neque molestiae.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium deserunt consequuntur libero voluptate facilis quisquam? Fuga ratione magnam modi velit, cum dolorum quisquam error assumenda pariatur voluptatibus explicabo aperiam. Nulla.</p>
+       
+        <h3>Heading 3 tags</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cupiditate delectus adipisci consequuntur assumenda itaque aspernatur odit ratione, quasi officia minus ipsa, repudiandae esse inventore eius, maxime deserunt neque molestiae.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium deserunt consequuntur libero voluptate facilis quisquam? Fuga ratione magnam modi velit, cum dolorum quisquam error assumenda pariatur voluptatibus explicabo aperiam. Nulla.</p>
+        
+    
+    </section>
+</body>
+</html>
