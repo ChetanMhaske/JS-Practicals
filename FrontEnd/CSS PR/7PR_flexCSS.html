@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="7PR_flexStyles.css"> -->
+     <style>
+        .box-container{
+            border: 2px solid black;
+            display: flex;
+            
+            /* items stay in one line and if their is not enough space they move to the next line */
+            flex-wrap: wrap;
+
+
+            /* flex-direction: column;  */
+
+
+
+            gap: 10px;/*display: flex is must for gap to work and for row we need 
+                        gap for row then display: flex as well as flex-direction: column*/
+        
+
+            height: 500px;/*for flex direction: column; justify-content works only with height*/ 
+
+            width: 100%;
+
+
+            /* justify-content: start; */
+            /* justify-content: end; */
+            /* justify-content: left; */
+            /* justify-content: right; */
+            /* justify-content: center; */
+            /* justify-content: space-around; */
+            /* justify-content: space-between; */
+            /* justify-content: space-evenly; */
+
+
+            /* align-items: start;
+            align-items: center;
+            align-items: end; */
+            
+            /* for all elements to be center */
+            /* justify-content: center;
+            align-items: center; */
+
+            /* align-items: center; */
+        }
+        .box{
+            background-color: purple;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            height: fit-content;
+            width: fit-content;
+        }
+
+        .box1{
+            flex-grow: 1;
+        }
+        .box2{
+            flex-grow: 4;
+        }
+        .box3{
+            flex-grow: 8;
+        }
+
+        /* .special{
+            align-self: flex-start;
+        } */
+        /* 
+            flex in css is used for arranging elements in a row or column and controlling the 
+            spacing and alignment of these elements
+
+            without flex arranging items in a page requeries a lot of extra css
+
+            main axis: the direction in which the items are layed out
+            cross asis: perpendicular to main axis
+
+            flex direction: row(default): main axis is left to right and cross axis in top to bottom
+            flex direction: column: main axis is top to bottom and cross axis is left to right
+        */
+
+
+        /* 
+
+        flex direction: row(default): No need to write in css code
+            main axis is left to right 
+            cross axis in top to bottom
+        flex direction: column: 
+            main axis is top to bottom 
+            cross axis is left to right
+
+        justify-content: start; items at begining
+        justify-content: end;  items at end
+        justify-content: left; items at left = start
+        justify-content: right; items at right = end
+        justify-content: center; items at center
+        justify-content: space-around; spread across the axis with even space between and same at edges
+        justify-content: space-between; spread across the axis
+        justify-content: space-evenly; spread across the axis with even spaces everywhere
+        these all properties works on main axis
+
+        align-items: start;
+        align-items: center;
+        align-items: end;
+        these 3 properties works on cross axis
+
+        .special{
+            align-self: flex-start;
+            used to override align-items property of parent tag for particular elements
+        }
+        */
+
+        /* 
+            Note: to center a div you onlly need 3 things in its parent
+            1 display: flex;
+            2 justify-content: center;
+            3 align-items: center;
+        */
+     </style>
+</head>
+<body>
+    <div class="box-container">
+        <div class="box box1">Box 1</div>
+        <div class="box box2">Box 2</div>
+        <div class="box box3">Box 3</div>
+        <!-- <div class="box">Box 1</div>
+        <div class="box special">Box 2</div>
+        <div class="box">Box 3</div> -->
+    </div>
+</body>
+</html>
