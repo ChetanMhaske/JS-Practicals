@@ -1,0 +1,31 @@
+.container{
+    display: grid;
+    grid-template-columns: 70px 70px 70px;
+    background-color: aqua;
+    padding: 5px;
+    gap: 5px;
+
+    height: 500px;
+    /* align-content: start; */
+    /* align-content: end; */
+    /* align-content: space-around; */
+    /* align-content: space-between; */
+    /* align-content: space-evenly; */
+    align-content: center;
+
+    /* justify-content: space-evenly; */
+    /* justify-content: space-around; */
+    /* justify-content: space-between; */
+    /* justify-content: center; */
+    /* justify-content: start; */
+    /* justify-content: end; */
+    /* width: fit-content; */
+}
+
+.child{
+    background-color: #f1f1f1;
+    color: black;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
+}

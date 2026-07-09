@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="9PR_gridStyles2.css"> -->
+     <style>
+        .container{
+            display: grid;
+            grid-template-columns: 70px 80px 70px;
+            background-color: aqua;
+            padding: 5px;
+            gap: 5px;
+
+            height: 500px;
+            /* align-content: start; */
+            /* align-content: end; */
+            /* align-content: space-around; */
+            /* align-content: space-between; */
+            /* align-content: space-evenly; */
+            align-content: center;
+
+            /* justify-content: space-evenly; */
+            /* justify-content: space-around; */
+            /* justify-content: space-between; */
+            /* justify-content: center; */
+            /* justify-content: start; */
+            /* justify-content: end; */
+
+            /* responsive */
+            /* grid-template-columns: repeat(auto-fit,minmax(60px,1fr)); */
+        }
+
+        .child{
+            background-color: #f1f1f1;
+            color: black;
+            padding: 10px;
+            /* width: fit-content; */
+            font-size: 30px;
+            text-align: center;
+        }
+
+     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child">1</div>
+        <div class="child">2</div>
+        <div class="child">3</div>
+        <div class="child">4</div>
+        <div class="child">5</div>
+        <div class="child">6</div>
+        <!-- <div class="child">7</div>
+        <div class="child">8</div>
+        <div class="child">9</div> -->
+    </div>
+</body>
+</html>

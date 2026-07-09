@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="8PR_gridStyles.css"> -->
+     <style>
+        .dashboard{
+            display: grid;
+            /* gap: 10px; */
+            column-gap: 10px;
+            row-gap: 10px;
+
+            /* we can use 1fr for responsiveness of it */
+            /* grid-template-columns: 1fr 2fr 4fr ;  */
+            /* grid-template-columns: repeat(5,1fr); */
+
+            /* grid-template-columns: 200px 200px 200px ;  */
+            /* grid-template-columns: repeat(2,200px); */
+            /* grid-template-columns: minmax(200px,1fr) 1fr 1fr; */
+            /* grid-template-columns: 240px 1fr; */
+
+
+            /* grid-template-rows: 100px 100px 100px; */
+            height: 500px;
+            /* grid-template-rows: 1fr 1fr 1fr; */
+            /* grid-template-rows: 1fr 2fr 3fr; */
+            /* grid-template-rows: repeat(3,1fr); */
+            /* grid-template-rows: 70px 1fr 120px 60px;     */
+
+
+            grid-template-areas: 
+                "top top"
+                "side main"
+                "side stats"
+                "bottom bottom"
+            ;
+        }
+
+        .top{
+            background-color: red;
+            grid-area: top;
+        }
+        .side{
+            background-color: gray;
+            grid-area: side;
+        }
+        .main{
+            background-color: orange;
+            grid-area: main;
+        }
+        .stats{
+            background-color: skyblue;
+            grid-area: stats;
+        }
+        .footer{
+            background-color: gold;
+            grid-area: bottom;
+        }
+
+     </style>
+</head>
+<body>
+    
+    <div class="dashboard">
+        <div class="top">Top</div>
+        <div  class="side">Side</div>
+        <div class="main">Main</div>
+        <div class="stats">Stats</div>
+        <div class="footer">Footer</div>
+    </div>
+
+</body>
+</html>
