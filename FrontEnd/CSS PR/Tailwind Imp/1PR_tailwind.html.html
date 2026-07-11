@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+    </style>
+</head>
+<body>
+    <h1 class="text-3xl font-bold underline text-clifford">
+      Hello world!
+    </h1>
+
+
+    <p class="text-xs">asdasd</p>
+    <p class="text-sm">asdasd</p>
+    <p class="text-2xl">asdasd</p>
+
+    <!-- applying custom values in tailwind css -->
+    <p class="bg-gray-500 text-center text-[40px] font-bold text-orange-500 italic">asdasd</p>
+
+    <p class="text-sm md:text-xl lg:text-2xl">asdasd</p>
+
+    <p class="text-tiny">pkmpkmpmp</p>
+    <div class="mx-[50px] mt-[50px] h-[100px] w-[200px] border-5 border-violet-500 p-[10px]">
+      <div class="h-full w-full bg-gray-500"></div>
+    </div>
+
+    <div class="m-4 flex flex-col items-center justify-center gap-5 sm:flex-row">
+      <div class="bg-amber-600 p-4">1</div>
+      <div class="bg-amber-600 p-4">2</div>
+      <div class="bg-amber-600 p-4">3</div>
+      <div class="bg-amber-600 p-4">1</div>
+      <div class="bg-amber-600 p-4">2</div>
+      <div class="bg-amber-600 p-4">3</div>
+      <div class="bg-amber-600 p-4">1</div>
+      <div class="bg-amber-600 p-4">2</div>
+      <div class="bg-amber-600 p-4">3</div>
+    </div>
+    <div class="m-4 grid grid-cols-3 items-center justify-center gap-5">
+      <div class="bg-amber-600 p-4">1</div>
+      <div class="bg-amber-600 p-4">2</div>
+      <div class="bg-amber-600 p-4">3</div>
+      <div class="bg-amber-600 p-4">1</div>
+      <div class="bg-amber-600 p-4">2</div>
+      <div class="bg-amber-600 p-4">3</div>
+      <div class="bg-amber-600 p-4">1</div>
+      <div class="bg-amber-600 p-4">2</div>
+      <div class="bg-amber-600 p-4">3</div>
+    </div>
+</body>
+</html>
