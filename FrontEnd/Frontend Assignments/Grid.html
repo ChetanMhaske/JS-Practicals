@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="gridStyles.css"> -->
+
+    <style>
+        .container{
+            display: grid;
+            gap: 10px;
+            /* grid-template-columns: 1fr 3fr; */
+            grid-template-areas: 
+                "one one one"
+                "two three three"
+                "five four four"
+            ;
+        }
+
+        .child{
+            background-color: rgb(7,107,114);
+            color: aliceblue;
+            padding: 20px;
+            border-radius: 12px;
+            border: 3px solid black;
+        }
+
+        .one{
+            grid-area: one;
+        }
+        .two{
+            grid-area: two;
+        }
+        .three{
+            grid-area: three;
+        }
+        .four{
+            grid-area: four;
+        }
+        .five{
+            grid-area: five;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="child one">one</div>
+        <div class="child two">Two</div>
+        <div class="child three">Three</div>
+        <div class="child four">Four</div>
+        <div class="five"></div>
+    </div>
+</body>
+</html>
