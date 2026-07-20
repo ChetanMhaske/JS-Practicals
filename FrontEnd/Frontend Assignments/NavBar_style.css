@@ -1,0 +1,73 @@
+.NavBar{
+    border-radius: 20px;
+    background-color: black;
+    color: aliceblue;
+    font-size: medium;
+    display: flex;
+    position: sticky;
+    top: 10px;    
+}
+.others{
+    display: flex;
+    top: 10px;
+    align-items: center;  
+    position: absolute;
+    right: 20px;  
+}
+.logo{
+    margin-left: 30px;
+}
+.elements{
+    
+    padding: 10px 15px;
+    background: black;
+    color: white;
+    text-decoration: none;
+}
+button{
+    padding: 5px 15px;
+    height: fit-content;
+    width: fit-content;
+    background: yellow;
+    color: black;
+    font-size: large;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+
+
+
+
+/* 
+.navbar{
+    background-color: black;
+    padding: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-radius: 12px;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 10px;
+}
+
+.logo{
+    font-weight: bold;
+}
+
+.other-elements{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.contactus{
+    background-color: yellow;
+    color: black;
+    border-radius: 12px;
+    padding: 10px;
+} */
