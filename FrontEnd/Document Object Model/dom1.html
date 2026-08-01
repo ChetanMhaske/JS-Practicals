@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <h1 class="heading">Hello  World</h1>
+    <h1 class="heading" id="idhead">Hello  World2</h1>
+    
+
+
+
+
+    <!-- we only want featured elements from div with class posts -->
+    <div class="posts">
+        <p>Post 1</p>
+        <p class="featured">Post 2</p>
+        <p class="featured">Post 3</p>
+        <p>Post 4</p>
+        <p class="featured">Post 5</p>
+        <p>Post 6</p>
+    </div>
+
+    <p class="featured">sdafjuhkaj</p>
+
+
+
+    <ul class="list"></ul>
+
+
+
+    <script src="dom1script.js"></script>
+    <script>
+        // console.log(document.URL)
+        // console.log(document.head)
+        // console.log(document.body.children)
+
+
+        // console.log(document.body.children[0])
+        // console.log(document.body.children[1])
+
+
+        // console.log(document.querySelector("h1"))
+        // console.log(document.querySelector(".heading"))
+        // console.log(document.querySelector("#idhead"))
+
+
+        // console.log(document.querySelectorAll("h1")[1])
+        // console.log(document.querySelectorAll("h1")[0])
+
+        // document.querySelectorAll("h1").forEach(item => 
+        //     console.log(item.textContent)
+        // )
+
+        // console.log(document.querySelector("#idhead").textContent)
+
+        // let elements = document.querySelectorAll("h1")
+        // // console.log(elements)
+        // for(let i = 0; i < elements.length; i++){
+        //     console.log(elements[i].textContent)
+        // }
+        
+        // let elements = document.querySelectorAll("h1")
+        // console.log(typeof(elements))
+
+
+
+
+        // we only want featured elements from div with class posts
+        // console.log(document.querySelectorAll(".posts .featured"))
+
+
+        // using textContent you can access and update the text
+        // inside an component
+        // console.log(document.querySelector('h1').textContent = "New World")
+
+
+
+
+        /*
+            task
+            change post 2 to new post 0
+            change post 3 to new post 1
+            change post 5 to new post 2
+        */
+
+        // document.querySelector(".featured").textContent = " new post 0"
+
+        // let elements = document.querySelectorAll('.posts .featured')
+        // // console.log(elements)
+        // for(let i = 0; i < elements.length; i++){
+        //     elements[i].textContent = `new post ${i}`
+        // }
+
+        // elements.forEach((items,idx) => 
+        //     items.textContent = `new post ${idx}`
+        // )
+
+
+
+
+
+
+        // Note this gives all the text inside the element
+        // console.log(document.querySelector('.posts').textContent)
+        
+
+
+        // innerHTML returns all the html code inside css selector
+        // gets and sets the HTML content inside the element
+        // console.log(document.querySelector('.posts').innerHTML)
+        // document.querySelector('.posts').innerHTML = "<h1>Testing innerHTML</h1>"
+        // document.querySelector('.posts').innerHTML = ""
+
+
+        // document.querySelector('.list').innerHTML = "<li>item1</li>"
+
+
+        // when you want to update the text use textContent ans  
+        // when you want to update tht HTML use innerHTML
+        // textContent is faster than innerHTML -> in innerHTML The html tags are 
+        // parsed and rendered again to display the updated HTML
+        // for(let i = 1; i <= 5; i++){
+        //     document.querySelector('.list').innerHTML += `<li>item ${i}</li>`
+        // }
+
+    </script>
+</body>
+</html>
