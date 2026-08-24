@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Roulette 🎲🍳</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white max-w-4xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 flex items-center gap-3">
+        Recipe Roulette<span class="text-2xl">🎲🍳</span>
+    </h1>
+
+
+    <div class="grid md:grid-cols-2 space-x-20">
+
+        <div class="bg-gray-800 p-6 space-y-4 w-[450px] rounded-[20px]">
+            <h1 class="text-2xl">Add Recipe</h1>
+    
+    
+            <form id="recipeForm" class="space-y-4">
+    
+                <div class="text-xl space-y-2">Name:
+                    <br>
+                    <input class="w-[400px] p-2 bg-gray-700" type="text" name="name" id="name">
+                    <span id="nameError" class="error text-sm"></span>
+                </div>
+        
+                <div class="text-xl space-y-2">Ingredients:
+                    <br>
+                    <textarea class="w-[400px] p-2 bg-gray-700" name="ingredients" id="ingredients"></textarea>
+                    <span id="ingError" class="error text-sm"></span>
+                </div>
+        
+                <div class="text-xl space-y-2">Time (min):
+                    <br>
+                    <input class="w-[400px] p-2 bg-gray-700" type="number" name="" id="number">
+                    <span id="timeError" class="error text-sm"></span>
+                </div>
+        
+                <div class="text-xl">Difficulty:
+                    <br>
+                    <div class="flex gap-10">
+                        <div class="flex gap-2">
+                            <input class="p-2 bg-gray-700" type="radio" name="difficulty" id=""> Easy
+                        </div>
+                        <div class="flex gap-2">
+                            <input class="p-2 bg-gray-700" type="radio" name="difficulty" id=""> Medium
+                        </div>
+                        <div class="flex gap-2">
+                            <input class="p-2 bg-gray-700" type="radio" name="difficulty" id=""> Hard
+                        </div>
+                        <span id="diffError" class="error text-sm"></span>
+                    </div>
+                </div>
+        
+                <div class="text-xl">Category:
+                    <br>
+                    <div class="flex gap-6">
+                        <div class="flex gap-2">
+                            <input class="p-2 bg-gray-700" type="checkbox" name="category" id=""> Breakfast
+                        </div>
+                        <div class="flex gap-2">
+                            <input class="p-2 bg-gray-700" type="checkbox" name="category" id=""> Lunch
+                        </div>
+                        <div class="flex gap-2">
+                            <input class="p-2 bg-gray-700" type="checkbox" name="category" id=""> Dinner
+                        </div>
+                        <div class="flex gap-2">
+                            <input class="p-2 bg-gray-700" type="checkbox" name="category" id=""> Snack
+                        </div>
+                        <span id="catError" class="error text-sm"></span>
+                    </div>
+                </div>
+        
+                <button id="addBtn" class="rounded-[20px] bg-green-500 w-[400px] p-4" type="submit" >Add Recipe</button>
+            </form>
+        </div>
+
+
+
+
+        <div class="p-3">
+            <div class="flex justify-between items-start mb-4">
+
+                <div class="text-xl font-semibold">All Recipe's (<span id="count">0</span>)</div>
+    
+                <button id="spinWheel" class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded font-semibold">Spin Wheel 🎰</button>
+            </div>
+
+            <div id="recipes" class="space-y-3 mb-6">
+                
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <div class="font-semibold mb-2">
+                        Faviourates ⭐
+                    </div>
+                    <div id="favorites"></div>
+                </div>
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <div>
+                        Recently Cooked
+                    </div class="font-semibold mb-2">
+                    <div id="recent"></div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+
+
+    <script>
+        let name = document.querySelector("#name")
+        name.value = localStorage.getItem("name") || ""
+        name.addEventListener('input', () => {
+            localStorage.setItem("name",name.value)
+        })
+
+        let ingredients = document.querySelector("#ingredients")
+        ingredients.value = localStorage.getItem("ingredients") || ""
+        ingredients.addEventListener('input', () => {
+            localStorage.setItem("ingredients",ingredients.value)
+        })
+
+        let number = document.querySelector("#number")
+        number.value = localStorage.getItem("number") || ""
+        number.addEventListener('input', () => {
+            localStorage.setItem("number",number.value)
+        })
+
+        let radioBtn = document.querySelectorAll('input[name="difficulty"]');
+        let savedRadStg = localStorage.getItem("radioBtn") || ""
+        radioBtn.forEach(item => {
+            let itemText = item.parentElement.textContent.trim()
+            if(savedRadStg==itemText){
+                item.checked = true
+            }
+        })
+        radioBtn.forEach(item => {
+            item.addEventListener('change',(e)=>{
+                localStorage.setItem("radioBtn",e.target.parentElement.textContent.trim())
+            })
+        })
+
+
+
+
+
+
+
+        let checkBox = document.querySelectorAll('input[name="category"]');
+        let savedChkStg = JSON.parse(localStorage.getItem("checkBox")) || [] 
+        checkBox.forEach(item => {
+            let itemText = item.parentElement.textContent.trim()
+            if(savedChkStg.includes(itemText)){
+                item.checked = true
+            }
+        })
+        checkBox.forEach(item => {
+            item.addEventListener('change',(e)=>{
+                let checkedBoxs = document.querySelectorAll('input[name="category"]:checked');
+                let selectedCategories = Array.from(checkedBoxs).map(box => {
+                    return box.parentElement.textContent.trim();
+                });
+                localStorage.setItem("checkBox",JSON.stringify(selectedCategories))
+            })
+        })
+
+
+
+
+
+
+        let checkedBoxes = document.querySelectorAll('input[name="category"]:checked');
+        let checkedRadio = document.querySelector('input[name="difficulty"]:checked');
+        let obje = {
+            "name": name.value,
+            "ingredients": ingredients.value,
+            "number": number.value,
+            "radioBtn": savedRadStg,
+            "checkBox": savedChkStg
+        }
+
+        
+        let btn = document.querySelector("Button")
+
+        function validate(){
+            if(
+                name.value.length > 3 && 
+                ingredients.value.length > 5 && 
+                number.value.length > 1 && 
+                checkedRadio !== null && 
+                checkedBoxes.length > 0
+            )
+            {
+                
+                btn.disabled = false
+                return true
+            }
+            else{
+                if(!name.value.length > 3){
+                    alert("Enter Recipe Name properly atleast 3 characters")
+                }
+                if(!ingredients.value.length > 5){
+                    alert("Enter Ingridients With more than 5 characters")
+                }
+                if(!number.value.length > 1){
+                    alert("Enter actual time required to make recipe")
+                }
+                if(!checkedRadio !== null){
+                    alert("Select Difficulty Level of Recipe")
+                }
+                if(!checkedBoxes.length > 0){
+                    alert("Select atleast 1 of given checkboxes")
+                }
+                btn.disabled = true
+                return false
+            }
+        }
+        let form = document.querySelector("#recipeForm");
+        form.addEventListener("input", validate);
+        form.addEventListener("change", validate);
+
+
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if(validate()){
+                addRecipe();
+            }
+        });
+
+        function addRecipe(){
+            let recipes = document.querySelector("#recipes");
+
+            let recipeName = document.querySelector("#name").value;
+
+            let h1 = document.createElement("h1");
+            h1.textContent = recipeName;
+
+            recipes.append(h1);
+        }
+    </script>
+</body>
+</html>

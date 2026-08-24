@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Roulette 🎲🍳</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .spin { animation: spin 0.5s ease-in-out; }
+    @keyframes spin { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(10deg); } }
+    .error { color: #ef4444; }
+    .valid { color: #10b981; }
+  </style>
+</head>
+<body class="bg-gray-900 text-white p-6 max-w-4xl mx-auto">
+ 
+  <!-- Header -->
+  <h1 class="text-3xl font-bold mb-6 flex items-center gap-3">
+    Recipe Roulette <span class="text-2xl">🎲🍳</span>
+  </h1>
+
+
+  <div class="grid md:grid-cols-2 gap-8">
+
+
+    <!-- FORM -->
+    <div class="bg-gray-800 p-6 rounded-lg">
+      <h2 class="text-xl mb-4 font-semibold">Add Recipe</h2>
+     
+      <form id="recipeForm">
+        <div class="mb-4">
+          <label>Name:</label>
+          <input id="name" class="w-full p-2 bg-gray-700 rounded mt-1" required minlength="3">
+          <span id="nameError" class="error text-sm"></span>
+        </div>
+
+
+        <div class="mb-4">
+          <label>Ingredients:</label>
+          <textarea id="ingredients" class="w-full p-2 bg-gray-700 rounded mt-1" required></textarea>
+          <span id="ingError" class="error text-sm"></span>
+        </div>
+
+
+        <div class="mb-4">
+          <label>Time (min):</label>
+          <input id="time" type="number" min="5" class="w-full p-2 bg-gray-700 rounded mt-1" required>
+          <span id="timeError" class="error text-sm"></span>
+        </div>
+
+
+        <div class="mb-4">
+          <label>Difficulty:</label><br>
+          <label><input type="radio" name="diff" value="Easy" required> Easy</label>
+          <label class="ml-4"><input type="radio" name="diff" value="Medium" required> Medium</label>
+          <label class="ml-4"><input type="radio" name="diff" value="Hard" required> Hard</label>
+          <span id="diffError" class="error text-sm"></span>
+        </div>
+
+
+        <div class="mb-4">
+          <label>Category:</label><br>
+          <label><input type="checkbox" name="cat" value="Breakfast"> Breakfast</label>
+          <label class="ml-4"><input type="checkbox" name="cat" value="Lunch"> Lunch</label>
+          <label class="ml-4"><input type="checkbox" name="cat" value="Dinner"> Dinner</label>
+          <label class="ml-4"><input type="checkbox" name="cat" value="Snack"> Snack</label>
+          <span id="catError" class="error text-sm"></span>
+        </div>
+
+
+        <button id="addBtn" type="submit" disabled
+                class="w-full bg-green-500 hover:bg-green-600 p-2 rounded font-semibold">
+          Add Recipe
+        </button>
+      </form>
+    </div>
+
+
+    <!-- RECIPES -->
+    <div>
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold">All Recipes (<span id="count">0</span>)</h2>
+        <button id="spinBtn" disabled class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded font-semibold">
+          Spin Wheel 🎰
+        </button>
+      </div>
+
+
+      <div id="recipes" class="space-y-3 mb-6">
+        <!-- Recipes appear here -->
+      </div>
+
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-gray-800 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">Favorites ⭐</h3>
+          <div id="favorites"></div>
+        </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+          <h3 class="font-semibold mb-2">Recently Cooked</h3>
+          <div id="recent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    // === DATA ===
+    let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    let recent = JSON.parse(localStorage.getItem('recent')) || [];
+
+
+    // === DOM ===
+    const form = document.getElementById('recipeForm');
+    const recipesDiv = document.getElementById('recipes');
+    const favoritesDiv = document.getElementById('favorites');
+    const recentDiv = document.getElementById('recent');
+    const addBtn = document.getElementById('addBtn');
+    const spinBtn = document.getElementById('spinBtn');
+
+
+    // === VALIDATION ===
+    function validate() {
+      const name = document.getElementById('name').value.length >= 3;
+      const ingredients = document.getElementById('ingredients').value.trim();
+      const time = parseInt(document.getElementById('time').value) >= 5;
+      const diff = document.querySelector('input[name="diff"]:checked');
+      const cat = document.querySelectorAll('input[name="cat"]:checked').length > 0;
+
+
+      addBtn.disabled = !(name && ingredients && time && diff && cat);
+      return name && ingredients && time && diff && cat;
+    }
+
+
+    // === CREATE RECIPE CARD ===
+    function createCard(recipe) {
+      const div = document.createElement('div');
+      div.className = 'bg-gray-800 p-4 rounded-lg';
+      div.dataset.id = recipe.id;
+
+
+      div.innerHTML = `
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="font-semibold">${recipe.name}</h3>
+          <span class="bg-gray-700 px-2 py-1 text-sm rounded">${recipe.time}min</span>
+        </div>
+        <p class="text-sm text-gray-400 mb-2">${recipe.ingredients}</p>
+        <div class="flex gap-2">
+          <button class="cook text-green-400 hover:text-green-300 text-sm">Cook!</button>
+          <button class="fav text-yellow-400 hover:text-yellow-300 text-sm">
+            ${favorites.includes(recipe.id) ? '⭐' : '☆'}
+          </button>
+          <button class="del text-red-400 hover:text-red-300 text-sm">🗑️</button>
+        </div>
+      `;
+      return div;
+    }
+
+
+    // === RENDER ===
+    function render() {
+      // All recipes
+      recipesDiv.innerHTML = '';
+      recipes.forEach(recipe => recipesDiv.appendChild(createCard(recipe)));
+     
+      // Count
+      document.getElementById('count').textContent = recipes.length;
+      spinBtn.disabled = recipes.length === 0;
+
+
+      // Favorites
+      favoritesDiv.innerHTML = favorites.map(id => {
+        const r = recipes.find(r => r.id === id);
+        return r ? `<div class="text-sm">${r.name} ⭐</div>` : '';
+      }).join('');
+
+
+      // Recent (last 5)
+      recentDiv.innerHTML = recent.slice(0,5).map(id => {
+        const r = recipes.find(r => r.id === id);
+        return r ? `<div class="text-sm">${r.name}</div>` : '';
+      }).join('');
+
+
+      saveData();
+    }
+
+
+    // === SAVE ===
+    function saveData() {
+      localStorage.setItem('recipes', JSON.stringify(recipes));
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+      localStorage.setItem('recent', JSON.stringify(recent));
+    }
+
+
+    // === ACTIONS ===
+    function addRecipe() {
+      const recipe = {
+        id: Date.now().toString(),
+        name: document.getElementById('name').value,
+        ingredients: document.getElementById('ingredients').value,
+        time: document.getElementById('time').value,
+        difficulty: document.querySelector('input[name="diff"]:checked').value,
+        categories: Array.from(document.querySelectorAll('input[name="cat"]:checked')).map(cb => cb.value)
+      };
+      recipes.push(recipe);
+      form.reset();
+      render();
+    }
+
+
+    function deleteRecipe(id) {
+      recipes = recipes.filter(r => r.id !== id);
+      favorites = favorites.filter(f => f !== id);
+      recent = recent.filter(r => r !== id);
+      render();
+    }
+
+
+    function toggleFav(id) {
+      const idx = favorites.indexOf(id);    // Find position
+      if (idx > -1) favorites.splice(idx, 1);   // Remove if exists
+      else favorites.push(id);  // Add if doesn't exist
+      render();
+    }
+
+
+    function cook(id) {
+      recent.unshift(id);   //Add to START of recent list
+
+
+      if (recent.length > 5) recent = recent.slice(0,5);    //Check if more than 5 -> Keep only first 5
+
+
+
+
+
+
+      render();
+    }
+
+
+    // === SPIN WHEEL ===
+    spinBtn.onclick = () => {
+      const randIdx = Math.floor(Math.random() * recipes.length);
+      const recipe = recipes[randIdx];
+      cook(recipe.id);
+     
+      // Simple animation
+      const card = recipesDiv.querySelector(`[data-id="${recipe.id}"]`);
+      if (card) {
+        card.classList.add('spin');
+        setTimeout(() => card.classList.remove('spin'), 500);
+      }
+    };
+
+
+    // === EVENT DELEGATION ===
+    recipesDiv.addEventListener('click', (e) => {
+      const id = e.target.closest('[data-id]').dataset.id;
+     
+      if (e.target.classList.contains('cook')) cook(id);
+      if (e.target.classList.contains('fav')) toggleFav(id);
+      if (e.target.classList.contains('del')) deleteRecipe(id);
+    });
+
+
+    // === FORM EVENTS ===
+    form.addEventListener('input', validate);
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      if (validate()) addRecipe();
+    };
+
+
+    // === START ===
+    render();
+  </script>
+</body>
+</html>
