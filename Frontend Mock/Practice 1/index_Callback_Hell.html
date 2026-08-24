@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // function A(callback){
+        //     setTimeout(() => {
+        //         console.log(1)
+        //         if(callback)callback()
+        //     }, 2000);
+        // }
+        // function B(callback){
+        //     setTimeout(() => {
+        //         console.log(2)
+        //         if(callback)callback()
+        //     }, 2000);
+        // }
+
+        // function C(){
+        //     setTimeout(() => {
+        //         console.log(3)
+        //     }, 2000);
+        // }
+        // A(()=>{
+        //     B(()=>{
+        //         C()
+        //     })
+        // })
+
+
+        function A(){
+            return new Promise((res,rej)=>{
+                setTimeout(() => {
+                    console.log(1)
+                    res()
+                }, 2000);
+            })
+        }
+        function B(){
+            return new Promise((res,rej)=>{
+                setTimeout(() => {
+                    console.log(2)
+                    res()
+                }, 2000);
+            })
+        }
+
+        function C(){
+            return new Promise((res,rej)=>{
+                setTimeout(() => {
+                    console.log(3)
+                    rej("Somrthing went wrong")
+                }, 2000);
+            })
+        }
+        // A().then(()=>B()).then(()=>C()).catch(err=>console.log(err))
+        async function fetching() {
+            const res = await A()
+            const res2 = await B(res)
+            const res3 = await A(res2)
+        }
+        fetching()
+    </script>
+</body>
+</html>

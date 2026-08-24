@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <input id="input" placeholder="Type something">
+    <p id="output"></p>
+    <script>
+
+
+        // // keyup and keydown events
+        // const input  = document.querySelector("#input")
+        // const output  = document.querySelector("#output")
+
+        // input.addEventListener("keydown", function(event) {
+        //     output.textContent = `You pressed: ${event.key}`;
+        // });
+
+        // input.addEventListener("keyup", function(event) {
+        //     console.log("Released:", event.key);
+        // });
+
+
+
+        // // event.key vs event.code
+        // const input  = document.querySelector("#input")
+        // input.addEventListener("keydown", function(event) {
+        //     console.log(event.key);
+        //     console.log(event.code);
+        // });
+
+
+
+        // // Detect Specific Keys
+        // document.addEventListener("keydown",(e)=>{
+        //     if(e.key === "Enter"){
+        //         console.log("Enter Pressed")
+        //     }
+        //     if (e.key === "ArrowUp") {
+        //         console.log("Up");
+        //     }
+
+        //     if (e.key === "ArrowDown") {
+        //         console.log("Down");
+        //     }
+        //     if (e.key === "Escape") {
+        //         console.log("Escape pressed");
+        //     }
+        // })
+
+
+
+        // Keyboard Shortcuts
+        /*
+            e.ctrlKey
+            e.shiftKey
+            e.altKey
+            e.metaKey
+
+            Why preventDefault()?
+            Normally:
+            Ctrl + S
+            opens the browser's Save dialog.
+        */
+        document.addEventListener("keydown",(e)=>{
+            if(e.ctrlKey && e.key === "s"){
+                // e.preventDefault()
+                console.log("ctrl + s pressed")
+            }
+            if (
+                e.ctrlKey &&
+                e.shiftKey &&
+                e.key.toLowerCase() === "p"
+            ) {
+                e.preventDefault()
+                console.log("Ctrl + Shift + P");
+            }
+        })
+    </script>
+</body>
+</html>

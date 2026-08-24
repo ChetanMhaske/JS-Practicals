@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="timer"></p>
+    <div id="counter"></div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <script>
+        let timer = document.getElementById("timer")
+        let time = setInterval(()=>{
+            let now = new Date()
+            timer.innerText = now.toLocaleDateString()
+            timer.innerText += ", " + now.toLocaleTimeString()
+        },1000)
+        setTimeout(() => {
+            clearInterval(time)
+            console.log("Clear")
+        }, 5000);
+
+
+
+
+        let count = 0
+        let timerId = null
+        let div = document.getElementById("counter")
+        div.textContent = count
+        let st = document.getElementById("start")
+        let sto = document.getElementById("stop")
+        st.addEventListener('click',(e)=>{
+            if(timerId == null){
+                timerId = setInterval(()=>{
+                    count++
+                    div.textContent = count
+                },1000)
+            }
+        })
+        sto.addEventListener('click',()=>{
+            clearInterval(timerId)
+            timerId = null
+        })
+    </script>
+</body>
+</html>
